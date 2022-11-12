@@ -53,8 +53,8 @@ This iOS app allows a user to play trivia based on a chosen category and questio
 | :------------- | :------- | :------------------------------------------------------------| 
 | `amount`       | `Int`    | **Required.** Amount of trivia questions to get.             |
 | `sessionToken` | `String` | **Required.** Session token to use.                          |
-| `category`     | `Int`    | **Required.** Trivia category to get questions from.         |
-| `difficulty`   | `Int`    | **Required.** The difficulty of the trivia questions to get. |
+| `category`     | `Int`    | **Optional.** Trivia category to get questions from.         |
+| `difficulty`   | `Int`    | **Optional.** The difficulty of the trivia questions to get. |
 
 ## Screenshots
 
