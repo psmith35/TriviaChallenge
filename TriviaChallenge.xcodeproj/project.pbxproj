@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DA055C9E2D2E270600A39CA4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA055C9D2D2E270600A39CA4 /* Main.storyboard */; };
+		DA055CA12D2E270900A39CA4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA055CA02D2E270900A39CA4 /* LaunchScreen.storyboard */; };
+		DA055CA32D2E270B00A39CA4 /* ScoreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA055CA22D2E270B00A39CA4 /* ScoreView.xib */; };
 		DA9C423D26DC23DC00F55AF4 /* UILabel+Customize.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9C423C26DC23DC00F55AF4 /* UILabel+Customize.swift */; };
 		DAE5FBB826BF557C002FB964 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE5FBB726BF557C002FB964 /* AppDelegate.swift */; };
 		DAE5FBBA26BF557C002FB964 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE5FBB926BF557C002FB964 /* SceneDelegate.swift */; };
-		DAE5FBBF26BF557C002FB964 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAE5FBBD26BF557C002FB964 /* Main.storyboard */; };
 		DAE5FBC226BF557C002FB964 /* TriviaChallenge.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DAE5FBC026BF557C002FB964 /* TriviaChallenge.xcdatamodeld */; };
 		DAE5FBC426BF5585002FB964 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAE5FBC326BF5585002FB964 /* Assets.xcassets */; };
-		DAE5FBC726BF5585002FB964 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAE5FBC526BF5585002FB964 /* LaunchScreen.storyboard */; };
 		DAE5FBD226C0C4F0002FB964 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE5FBD126C0C4F0002FB964 /* DataController.swift */; };
 		DAE5FBD526C0C559002FB964 /* TCClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE5FBD426C0C559002FB964 /* TCClient.swift */; };
 		DAE5FBD826C0C5A7002FB964 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE5FBD726C0C5A7002FB964 /* ErrorResponse.swift */; };
@@ -29,7 +30,6 @@
 		DAE5FC0226C75C76002FB964 /* LeaderboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE5FC0126C75C76002FB964 /* LeaderboardViewController.swift */; };
 		DAE5FC0826C98A16002FB964 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE5FC0726C98A16002FB964 /* CategoryViewController.swift */; };
 		DAE5FC0B26C98B92002FB964 /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE5FC0A26C98B92002FB964 /* ScoreView.swift */; };
-		DAE5FC1E26CCADA7002FB964 /* ScoreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAE5FC1D26CCADA7002FB964 /* ScoreView.xib */; };
 		DAFC9E5026CF533E0028D1D9 /* DefaultsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFC9E4F26CF533E0028D1D9 /* DefaultsKey.swift */; };
 		DAFC9E5326D208310028D1D9 /* UserDefaults+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFC9E5226D208310028D1D9 /* UserDefaults+Codable.swift */; };
 		DAFC9E5F26D334640028D1D9 /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFC9E5E26D334640028D1D9 /* QuizViewController.swift */; };
@@ -37,14 +37,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DA055C9C2D2E270600A39CA4 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		DA055C9F2D2E270900A39CA4 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		DA055CA22D2E270B00A39CA4 /* ScoreView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScoreView.xib; sourceTree = "<group>"; };
 		DA9C423C26DC23DC00F55AF4 /* UILabel+Customize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Customize.swift"; sourceTree = "<group>"; };
 		DAE5FBB426BF557C002FB964 /* TriviaChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TriviaChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAE5FBB726BF557C002FB964 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DAE5FBB926BF557C002FB964 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		DAE5FBBE26BF557C002FB964 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DAE5FBC126BF557C002FB964 /* TriviaChallenge.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TriviaChallenge.xcdatamodel; sourceTree = "<group>"; };
 		DAE5FBC326BF5585002FB964 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		DAE5FBC626BF5585002FB964 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DAE5FBC826BF5585002FB964 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DAE5FBD126C0C4F0002FB964 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		DAE5FBD426C0C559002FB964 /* TCClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCClient.swift; sourceTree = "<group>"; };
@@ -61,7 +62,6 @@
 		DAE5FC0126C75C76002FB964 /* LeaderboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardViewController.swift; sourceTree = "<group>"; };
 		DAE5FC0726C98A16002FB964 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		DAE5FC0A26C98B92002FB964 /* ScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreView.swift; sourceTree = "<group>"; };
-		DAE5FC1D26CCADA7002FB964 /* ScoreView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScoreView.xib; sourceTree = "<group>"; };
 		DAFC9E4F26CF533E0028D1D9 /* DefaultsKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsKey.swift; sourceTree = "<group>"; };
 		DAFC9E5226D208310028D1D9 /* UserDefaults+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Codable.swift"; sourceTree = "<group>"; };
 		DAFC9E5E26D334640028D1D9 /* QuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
@@ -114,10 +114,10 @@
 				DAE5FBB726BF557C002FB964 /* AppDelegate.swift */,
 				DAE5FBB926BF557C002FB964 /* SceneDelegate.swift */,
 				DAE5FBD126C0C4F0002FB964 /* DataController.swift */,
-				DAE5FBBD26BF557C002FB964 /* Main.storyboard */,
+				DA055C9D2D2E270600A39CA4 /* Main.storyboard */,
 				DAE5FBC326BF5585002FB964 /* Assets.xcassets */,
-				DAE5FBC526BF5585002FB964 /* LaunchScreen.storyboard */,
-				DAE5FC1D26CCADA7002FB964 /* ScoreView.xib */,
+				DA055CA02D2E270900A39CA4 /* LaunchScreen.storyboard */,
+				DA055CA22D2E270B00A39CA4 /* ScoreView.xib */,
 				DAE5FBC826BF5585002FB964 /* Info.plist */,
 				DAE5FBC026BF557C002FB964 /* TriviaChallenge.xcdatamodeld */,
 			);
@@ -227,10 +227,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DAE5FBC726BF5585002FB964 /* LaunchScreen.storyboard in Resources */,
-				DAE5FC1E26CCADA7002FB964 /* ScoreView.xib in Resources */,
+				DA055CA12D2E270900A39CA4 /* LaunchScreen.storyboard in Resources */,
+				DA055CA32D2E270B00A39CA4 /* ScoreView.xib in Resources */,
 				DAE5FBC426BF5585002FB964 /* Assets.xcassets in Resources */,
-				DAE5FBBF26BF557C002FB964 /* Main.storyboard in Resources */,
+				DA055C9E2D2E270600A39CA4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,18 +270,18 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		DAE5FBBD26BF557C002FB964 /* Main.storyboard */ = {
+		DA055C9D2D2E270600A39CA4 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				DAE5FBBE26BF557C002FB964 /* Base */,
+				DA055C9C2D2E270600A39CA4 /* Main.storyboard */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		DAE5FBC526BF5585002FB964 /* LaunchScreen.storyboard */ = {
+		DA055CA02D2E270900A39CA4 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				DAE5FBC626BF5585002FB964 /* Base */,
+				DA055C9F2D2E270900A39CA4 /* LaunchScreen.storyboard */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";

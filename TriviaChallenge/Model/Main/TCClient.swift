@@ -11,7 +11,7 @@ import UIKit
 class TCClient {
     
     static var sessionToken = ""
-    
+        
     enum MethodTypes : String {
         case get = "GET"
         case post = "POST"
@@ -20,23 +20,31 @@ class TCClient {
     }
     
     enum Endpoints {
-        static let urlBase = "https://opentdb.com/"
-        static let base = urlBase + "api.php?"
-        static let sessionTokenPart = "&token=\(sessionToken)"
+        static let url = "https://opentdb.com/"
+        static let base = "\(url)api.php?"
+        static let categoryBase = "\(url)api_category.php"
+        static let tokenBase = "\(url)api_token.php?"
         
         case getToken
         case resetToken
         case getCategories
+        case getQuestions(Int, TriviaCategory, Difficulty)
         
         var stringValue: String {
             switch self {
-            case .getToken :
-                return Endpoints.base + "command=request"
-            case .resetToken :
-                return Endpoints.base + "command=reset" + Endpoints.sessionTokenPart
-            case .getCategories :
-                return Endpoints.urlBase + "api_category.php"
+            case .getToken:
+                return Endpoints.tokenBase + "command=request"
+            case .resetToken:
+                return Endpoints.tokenBase + "command=reset" + sessionTokenPart
+            case .getCategories:
+                return Endpoints.categoryBase
+            case .getQuestions(let amount, let category, let difficulty):
+                return Endpoints.base + "amount=\(amount)" + sessionTokenPart + "&category=\(category.id)&difficulty=\(difficulty.rawValue)&encode=base64"
             }
+        }
+        
+        var sessionTokenPart: String {
+            return "&token=\(sessionToken)"
         }
         
         var url: URL {
@@ -44,46 +52,116 @@ class TCClient {
         }
     }
     
-    class func getSessionToken(success: @escaping () -> Void, failure: @escaping (Error?) -> Void) {
+    // MARK: - Helper Functions
+    class func loadGameData(success: @escaping () -> Void, failure: @escaping (String, String) -> Void) {
+        let successClosure = {loadSessionToken(success: success, failure: failure)}
+        getTriviaCategories(success: successClosure, failure: failure)
+    }
+    
+    class func loadSessionToken(success: @escaping () -> Void, failure: @escaping (String, String) -> Void) {
+        guard let sessionToken = UserDefaults.standard.string(forKey: DefaultsKey.sessionToken.rawValue) else {
+            getSessionToken(success: success, failure: failure)
+            return
+        }
+        TCClient.sessionToken = sessionToken
+        success()
+    }
+    
+    class func setSessionToken(sessionToken: String) {
+        TCClient.sessionToken = sessionToken
+        UserDefaults.standard.setValue(sessionToken, forKey: DefaultsKey.sessionToken.rawValue)
+    }
+    
+    // MARK: - API Functions
+    class func getSessionToken(success: @escaping () -> Void, failure: @escaping (String, String) -> Void) {
+        let getTokenErrorTitle = "Couldn't Start Session"
         _ = taskForGETRequest(url: Endpoints.getToken.url, responseType: TokenResponse.self, completion: {
             (response, error) in
-            if let response = response, response.responseCode == 0 {
-                TCClient.sessionToken = response.sessionToken
-                success()
+            if let response = response {
+                if response.responseCode == 0 {
+                    setSessionToken(sessionToken: response.sessionToken)
+                    success()
+                }
+                else {
+                    failure(getTokenErrorTitle, response.responseMessage)
+                }
             }
             else {
-                failure(error)
+                failure(getTokenErrorTitle, error?.localizedDescription ?? "")
             }
         })
     }
     
-    class func resetSessionToken(success: @escaping () -> Void, failure: @escaping (Error?) -> Void) {
+    class func resetSessionToken(success: @escaping () -> Void, failure: @escaping (String, String) -> Void) {
+        let resetTokenErrorTitle = "Couldn't Restart Session"
         _ = taskForGETRequest(url: Endpoints.resetToken.url, responseType: ResetResponse.self, completion: {
             (response, error) in
             if let response = response {
                 if response.responseCode == 0 {
-                    TCClient.sessionToken = response.sessionToken
+                    setSessionToken(sessionToken: response.sessionToken)
                     success()
                 }
                 else if response.responseCode == 3 {
-                    TCClient.getSessionToken(success: success, failure: failure)
+                    getSessionToken(success: success, failure: failure)
+                }
+                else {
+                    failure(resetTokenErrorTitle, "There was a problem resetting the session.")
                 }
             }
             else {
-                failure(error)
+                failure(resetTokenErrorTitle, error?.localizedDescription ?? "")
             }
         })
     }
     
-    class func getTriviaCategories(success: @escaping () -> Void, failure: @escaping (Error?) -> Void) {
+    class func getTriviaCategories(success: @escaping () -> Void, failure: @escaping (String, String) -> Void) {
         _ = taskForGETRequest(url: Endpoints.getCategories.url, responseType: CategoryList.self, completion: {
             (response, error) in
             if let response = response {
-                TCMModel.triviaCategories = response.triviaCategories
+                TCModel.triviaCategories = response.triviaCategories
                 success()
             }
             else {
-                failure(error)
+                failure("Couldn't Get Trivia Categories", error?.localizedDescription ?? "")
+            }
+        })
+    }
+    
+    class func getTriviaQuestions(amount: Int, triviaCategory: TriviaCategory, difficulty: Difficulty, shouldTryAgain: Bool, success: @escaping ([TriviaQuestion]) -> Void, failure: @escaping (String, String) -> Void) {
+        _ = taskForGETRequest(url: Endpoints.getQuestions(amount, triviaCategory, difficulty).url, responseType: TriviaQuestions.self, completion: {
+            (response, error) in
+            if let response = response {
+                
+                let failureClosure = {failure("Couldn't Get Trivia", "Try Again Later")}
+                let tryAgainClosure = {
+                    getTriviaQuestions(amount: amount, triviaCategory: triviaCategory, difficulty: difficulty, shouldTryAgain: false, success: success, failure: failure)
+                }
+                
+                switch response.responseCode {
+                    case 0:
+                        success(response.triviaQuestions)
+                    case 1, 2:
+                        failureClosure()
+                    case 3:
+                        if shouldTryAgain {
+                            getSessionToken(success: tryAgainClosure, failure: failure)
+                        }
+                        else {
+                            failureClosure()
+                        }
+                    case 4:
+                        if shouldTryAgain {
+                            resetSessionToken(success: tryAgainClosure, failure: failure)
+                        }
+                        else {
+                            failureClosure()
+                        }
+                    default:
+                        print("Error found.")
+                }
+            }
+            else {
+                failure("Couldn't Get Trivia", error?.localizedDescription ?? "")
             }
         })
     }
